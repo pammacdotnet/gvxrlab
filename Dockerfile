@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y subversion build-essential cmake python3-dev wget zlib1g-dev ruby-dev \
 	swig libglew-dev xorg-dev libx11-dev xorg-dev fftw3-dev python3-pip libassimp-dev libtiff5-dev \
-	python3-tk xvfb octave-image less libglfw3-dev libtool libffi-dev ruby ruby-dev make git libzmq3-dev autoconf pkg-config 
+	python3-tk xvfb octave-image octave-pkg-dev less libglfw3-dev libtool libffi-dev ruby ruby-dev make git libzmq3-dev autoconf pkg-config 
 
 RUN apt-get install --fix-missing
 RUN pip3 install numpy matplotlib image pillow octave_kernel notebook scipy scikit-image traitlets requests bqplot ipywidgets ipyvolume matplotlib pandas ipyleaflet pythreejs ipyevents ipysheet ipytree pywwt ipympl voila jupyterlab voila-vuetify
@@ -24,8 +24,8 @@ RUN iruby register --force
 
 WORKDIR ${HOME}
 
-
-RUN svn checkout --non-interactive --trust-server-cert https://svn.code.sf.net/p/gvirtualxray/code/trunk gvirtualxray-trunk
+ADD https://www.dropbox.com/s/scrr0xp3kebrbad/gvxrsource.tgz?dl=1 ${HOME}
+# RUN svn checkout --non-interactive --trust-server-cert https://svn.code.sf.net/p/gvirtualxray/code/trunk gvirtualxray-trunk
 RUN mkdir GVXRbuild
 RUN mkdir GVXR
 WORKDIR ${HOME}/GVXRbuild
