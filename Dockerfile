@@ -23,8 +23,7 @@ RUN gem install iruby --pre
 RUN iruby register --force
 
 WORKDIR ${HOME}
-
-ADD https://www.dropbox.com/s/scrr0xp3kebrbad/gvxrsource.tgz?dl=1 ${HOME}
+RUN wget -qO- https://www.dropbox.com/s/scrr0xp3kebrbad/gvxrsource.tgz?dl=1 | tar xvz -
 # RUN svn checkout --non-interactive --trust-server-cert https://svn.code.sf.net/p/gvirtualxray/code/trunk gvirtualxray-trunk
 RUN mkdir GVXRbuild
 RUN mkdir GVXR
