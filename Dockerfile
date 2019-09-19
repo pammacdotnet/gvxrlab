@@ -23,7 +23,7 @@ RUN gem install iruby --pre
 RUN iruby register --force
 
 WORKDIR ${HOME}
-USER ${USER}
+
 
 RUN svn checkout --non-interactive --trust-server-cert https://svn.code.sf.net/p/gvirtualxray/code/trunk gvirtualxray-trunk
 RUN mkdir GVXRbuild
@@ -38,5 +38,6 @@ RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/python3/* ${HOME}/GVXR/
 RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/ruby/* ${HOME}/GVXR/
 RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/octave/* ${HOME}/GVXR/
 RUN rm -rf GVXRbuild gvirtualxray-trunk
+USER ${USER}
 ENV PYTHONPATH $PYTHONPATH:${HOME}/GVXR
 ENV RUBYLIB $RUBYLIB:${HOME}/GVXR
