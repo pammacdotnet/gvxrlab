@@ -16,7 +16,7 @@ RUN adduser --disabled-password --gecos "Default user" --uid ${NB_UID} ${NB_USER
 WORKDIR ${HOME}
 RUN git clone https://github.com/zeromq/czmq
 WORKDIR ${HOME}/czmq
-RUN ./autogen.sh && ./configure && sudo make && sudo make install
+RUN ./autogen.sh && ./configure && make && make install
 
 RUN gem install cztop
 RUN gem install iruby --pre
