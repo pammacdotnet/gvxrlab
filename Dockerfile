@@ -31,7 +31,7 @@ RUN mkdir GVXR
 WORKDIR ${HOME}/GVXRbuild
 RUN cmake ../gvirtualxray-trunk -DBUILD_PYTHON3=ON -DBUILD_RUBY=ON \
 	-DUSE_SYSTEM_XCOM=OFF -DXCOM_PATH=${HOME}/GVXR/XCOM -DUSE_SYSTEM_ASSIMP=ON -DBUILD_OCTAVE=ON -DUSE_SYSTEM_GLFW=OFF
-RUN make -j2
+RUN make
 WORKDIR ${HOME}
 RUN echo "addpath('${HOME}/GVXR')" > ${HOME}/.octaverc
 RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/python3/* ${HOME}/GVXR/
