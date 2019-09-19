@@ -4,7 +4,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y subversi
 	python3-tk xvfb octave-pkg-dev octave-image less libglfw3-dev libtool libffi-dev ruby ruby-dev make git libzmq3-dev autoconf pkg-config 
 
 RUN apt-get install --fix-missing
-RUN pip3 install numpy matplotlib image pillow octave_kernel notebook scipy scikit-image traitlets requests bqplot ipywidgets ipyvolume matplotlib pandas ipyleaflet pythreejs ipyevents ipysheet ipytree pywwt ipympl voila jupyterlab voila-vuetify BeautifulSoup
+RUN pip3 install numpy matplotlib image pillow octave_kernel notebook scipy scikit-image traitlets requests bqplot ipywidgets ipyvolume matplotlib pandas ipyleaflet pythreejs ipyevents ipysheet ipytree pywwt ipympl voila jupyterlab voila-vuetify
 RUN gem install matplotlib
 
 ARG NB_USER
