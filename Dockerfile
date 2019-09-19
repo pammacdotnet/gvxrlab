@@ -28,7 +28,7 @@ USER ${USER}
 RUN svn checkout --non-interactive --trust-server-cert https://svn.code.sf.net/p/gvirtualxray/code/trunk gvirtualxray-trunk
 RUN mkdir GVXRbuild
 RUN mkdir GVXR
-WORKDIR ${HOME}GVXRbuild
+WORKDIR ${HOME}/GVXRbuild
 RUN cmake ../gvirtualxray-trunk -DBUILD_PYTHON3=ON -DBUILD_RUBY=ON \
 	-DUSE_SYSTEM_XCOM=OFF -DXCOM_PATH=${HOME}/GVXR/XCOM -DUSE_SYSTEM_ASSIMP=ON -DBUILD_OCTAVE=ON -DUSE_SYSTEM_GLFW=OFF
 RUN make -j2
