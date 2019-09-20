@@ -27,8 +27,8 @@ WORKDIR ${HOME}
 RUN gem install matplotlib
 RUN git clone https://github.com/zeromq/czmq
 WORKDIR ${HOME}/czmq
-RUN ./autogen.sh && ./configure && make && make install
-RUN gem install cztop
+# RUN ./autogen.sh && ./configure && make && make install
+# RUN gem install cztop
 # RUN gem install iruby --pre
 # RUN iruby register --force
 WORKDIR ${HOME}
