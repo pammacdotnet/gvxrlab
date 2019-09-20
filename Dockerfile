@@ -47,9 +47,11 @@ RUN set -e
 RUN echo "Starting X virtual framebuffer (Xvfb) in background..."
 RUN Xvfb -ac :99 -screen 0 1280x1024x16 > /dev/null 2>&1 &
 RUN export DISPLAY=:99
+ENV DISPLAY :99
 RUN exec "$@"
 
 USER ${USER}
+ENV DISPLAY :99
 ENV PYTHONPATH $PYTHONPATH:${HOME}/GVXR
 
 # ENV RUBYLIB $RUBYLIB:${HOME}/GVXR
