@@ -7,7 +7,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	# python3-dev python3-pip \
 	wget zlib1g-dev ruby-dev \
 	swig libglew-dev xorg-dev libx11-dev xorg-dev fftw3-dev libassimp-dev libtiff5-dev \
-	python3-tk xvfb octave-image liboctave-dev less libglfw3-dev libtool libffi-dev ruby ruby-dev make git libzmq3-dev autoconf pkg-config 
+	python3-tk xvfb octave-image liboctave-dev less libglfw3-dev libtool libffi-dev ruby ruby-dev make git libzmq3-dev libczmq-dev autoconf pkg-config 
 
 #RUN apt-get install --fix-missing
 #RUN pip3 install --no-cache --upgrade pip
@@ -25,10 +25,10 @@ RUN adduser --disabled-password --gecos "Default user" --uid ${NB_UID} ${NB_USER
 WORKDIR ${HOME}
 
 RUN gem install matplotlib
-RUN git clone https://github.com/zeromq/czmq
-WORKDIR ${HOME}/czmq
-RUN ./autogen.sh && ./configure && make && make install
-RUN gem install cztop
+#RUN git clone https://github.com/zeromq/czmq
+#WORKDIR ${HOME}/czmq
+#RUN ./autogen.sh && ./configure && make && make install
+RUN gem install ffi-rzmq
 RUN gem install iruby --pre
 RUN iruby register --force
 WORKDIR ${HOME}
