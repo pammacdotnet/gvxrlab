@@ -42,8 +42,14 @@ RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/python3/* ${HOME}/GVXR/
 # RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/ruby/* ${HOME}/GVXR/
 RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/octave/* ${HOME}/GVXR/
 RUN rm -rf GVXRbuild gvirtualxray-trunk
+
+RUN set -e
+RUN echo "Starting X virtual framebuffer (Xvfb) in background..."
+RUN Xvfb -ac :99 -screen 0 1280x1024x16 > /dev/null 2>&1 &
+RUN export DISPLAY=:99
+RUN exec "$@"
+
 USER ${USER}
 ENV PYTHONPATH $PYTHONPATH:${HOME}/GVXR
-ENV DISPLAY 0:0
-RUN Xvfb ${DISPLAY} &
+
 # ENV RUBYLIB $RUBYLIB:${HOME}/GVXR
