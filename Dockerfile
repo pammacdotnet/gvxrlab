@@ -1,5 +1,6 @@
 #FROM ubuntu:19.04
 FROM python:3.7-slim
+RUN mkdir -p /usr/share/man/man1
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	cmake \
 	subversion build-essential \
