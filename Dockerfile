@@ -24,27 +24,27 @@ RUN adduser --disabled-password --gecos "Default user" --uid ${NB_UID} ${NB_USER
 
 WORKDIR ${HOME}
 
-# RUN gem install matplotlib
-# RUN git clone https://github.com/zeromq/czmq
-# WORKDIR ${HOME}/czmq
-# RUN ./autogen.sh && ./configure && make && make install
-# RUN gem install cztop
-# RUN gem install iruby --pre
-# RUN iruby register --force
-# WORKDIR ${HOME}
-# RUN wget -qO- https://www.dropbox.com/s/scrr0xp3kebrbad/gvxrsource.tgz?dl=1 | tar --transform 's/^dbt2-0.37.50.3/dbt2/' -xvz
-# RUN mkdir GVXRbuild
-# RUN mkdir GVXR
-# WORKDIR ${HOME}/GVXRbuild
-# RUN cmake ../gvirtualxray-trunk -DBUILD_PYTHON3=ON -DBUILD_RUBY=ON \
-# 	-DUSE_SYSTEM_XCOM=OFF -DXCOM_PATH=${HOME}/GVXR/XCOM -DUSE_SYSTEM_ASSIMP=ON -DBUILD_OCTAVE=ON -DUSE_SYSTEM_GLFW=OFF
-# RUN make
-# WORKDIR ${HOME}
-# RUN echo "addpath('${HOME}/GVXR')" > ${HOME}/.octaverc
-# RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/python3/* ${HOME}/GVXR/
-# RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/ruby/* ${HOME}/GVXR/
-# RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/octave/* ${HOME}/GVXR/
-# RUN rm -rf GVXRbuild gvirtualxray-trunk
+RUN gem install matplotlib
+RUN git clone https://github.com/zeromq/czmq
+WORKDIR ${HOME}/czmq
+RUN ./autogen.sh && ./configure && make && make install
+RUN gem install cztop
+RUN gem install iruby --pre
+RUN iruby register --force
+WORKDIR ${HOME}
+RUN wget -qO- https://www.dropbox.com/s/scrr0xp3kebrbad/gvxrsource.tgz?dl=1 | tar --transform 's/^dbt2-0.37.50.3/dbt2/' -xvz
+RUN mkdir GVXRbuild
+RUN mkdir GVXR
+WORKDIR ${HOME}/GVXRbuild
+RUN cmake ../gvirtualxray-trunk -DBUILD_PYTHON3=ON -DBUILD_RUBY=ON \
+	-DUSE_SYSTEM_XCOM=OFF -DXCOM_PATH=${HOME}/GVXR/XCOM -DUSE_SYSTEM_ASSIMP=ON -DBUILD_OCTAVE=ON -DUSE_SYSTEM_GLFW=OFF
+RUN make
+WORKDIR ${HOME}
+RUN echo "addpath('${HOME}/GVXR')" > ${HOME}/.octaverc
+RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/python3/* ${HOME}/GVXR/
+RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/ruby/* ${HOME}/GVXR/
+RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/octave/* ${HOME}/GVXR/
+RUN rm -rf GVXRbuild gvirtualxray-trunk
 USER ${USER}
 ENV PYTHONPATH $PYTHONPATH:${HOME}/GVXR
 ENV RUBYLIB $RUBYLIB:${HOME}/GVXR
