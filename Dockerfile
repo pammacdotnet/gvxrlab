@@ -35,14 +35,13 @@ RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/python3/* ${HOME}/GVXR/
 RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/octave/* ${HOME}/GVXR/
 RUN rm -rf GVXRbuild gvirtualxray-trunk
 
-RUN set -e
-RUN echo "Starting X virtual framebuffer (Xvfb) in background..."
-RUN export DISPLAY=:99.0
-ENV DISPLAY :99.0
-# RUN Xvfb -ac :99 -screen 0 1280x1024x16 > /dev/null 2>&1 &
-RUN Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-RUN sleep 3
-RUN exec "$@"
+# RUN set -e
+# RUN echo "Starting X virtual framebuffer (Xvfb) in background..."
+# RUN export DISPLAY=:99.0
+# ENV DISPLAY :99.0
+# RUN Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+# RUN sleep 3
+# RUN exec "$@"
 
 USER ${USER}
 
