@@ -13,7 +13,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 #RUN pip3 install --no-cache --upgrade pip
 RUN pip install --upgrade pip
 RUN pip install notebook 
-RUN pip numpy matplotlib image pillow octave_kernel scipy scikit-image traitlets requests bqplot ipywidgets ipyvolume matplotlib pandas ipyleaflet pythreejs ipyevents ipysheet ipytree pywwt ipympl voila jupyterlab voila-vuetify
+RUN pip install numpy matplotlib image pillow octave_kernel scipy scikit-image traitlets requests bqplot ipywidgets ipyvolume matplotlib pandas ipyleaflet pythreejs ipyevents ipysheet ipytree pywwt ipympl voila jupyterlab voila-vuetify
 
 
 ARG NB_USER
