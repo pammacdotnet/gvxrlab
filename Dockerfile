@@ -44,4 +44,6 @@ RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/octave/* ${HOME}/GVXR/
 RUN rm -rf GVXRbuild gvirtualxray-trunk
 USER ${USER}
 ENV PYTHONPATH $PYTHONPATH:${HOME}/GVXR
+ENV DISPLAY 0:0
+RUN Xvfb ${DISPLAY} &
 # ENV RUBYLIB $RUBYLIB:${HOME}/GVXR
