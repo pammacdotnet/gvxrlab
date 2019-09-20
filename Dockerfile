@@ -19,14 +19,6 @@ ENV USER ${NB_USER}
 ENV HOME /home/${NB_USER}
 RUN adduser --disabled-password --gecos "Default user" --uid ${NB_UID} ${NB_USER}
 
-# RUN gem install matplotlib
-# RUN git clone https://github.com/zeromq/czmq
-# WORKDIR ${HOME}/czmq
-# RUN ./autogen.sh && ./configure && make && make install
-# RUN gem install ffi-rzmq
-# RUN gem install iruby --pre
-# RUN iruby register --force
-
 WORKDIR ${HOME}
 RUN wget -qO- https://www.dropbox.com/s/scrr0xp3kebrbad/gvxrsource.tgz?dl=1 | tar --transform 's/^dbt2-0.37.50.3/dbt2/' -xvz
 RUN mkdir GVXRbuild
@@ -56,3 +48,4 @@ USER ${USER}
 
 ENV PYTHONPATH $PYTHONPATH:${HOME}/GVXR
 COPY dragon.stl ${HOME}/
+COPY spider.stl ${HOME}/
