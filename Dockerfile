@@ -1,7 +1,8 @@
-#FROM ubuntu:19.04
-FROM python:3.7-slim
+FROM ubuntu:18.04
+#FROM python:3.7-slim
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+	python3-pip python3 python3-dev \ 
 	cmake subversion build-essential wget zlib1g-dev \
 	swig libglew-dev xorg-dev libx11-dev xorg-dev fftw3-dev libassimp-dev libtiff5-dev \
 	python3-tk xvfb octave-image liboctave-dev less libglfw3-dev libtool make autoconf pkg-config
@@ -9,9 +10,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 
 #RUN apt-get install --fix-missing
 #RUN pip3 install --no-cache --upgrade pip
-RUN pip install --upgrade pip
-RUN pip install notebook xvfbwrapper
-RUN pip install numpy matplotlib image pillow octave_kernel scipy scikit-image traitlets requests bqplot ipywidgets ipyvolume matplotlib pandas ipyleaflet pythreejs ipyevents ipysheet ipytree pywwt ipympl voila jupyterlab voila-vuetify
+RUN pip3 install --upgrade pip
+RUN pip3 install notebook xvfbwrapper
+RUN pip3 install numpy matplotlib image pillow octave_kernel scipy scikit-image traitlets requests bqplot ipywidgets ipyvolume matplotlib pandas ipyleaflet pythreejs ipyevents ipysheet ipytree pywwt ipympl voila jupyterlab voila-vuetify
 
 ARG NB_USER
 ARG NB_UID
