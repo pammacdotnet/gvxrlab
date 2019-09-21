@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:19.04
 #FROM python:3.7-slim
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -21,7 +21,8 @@ ENV HOME /home/${NB_USER}
 RUN adduser --disabled-password --gecos "Default user" --uid ${NB_UID} ${NB_USER}
 
 WORKDIR ${HOME}
-RUN wget -qO- https://www.dropbox.com/s/scrr0xp3kebrbad/gvxrsource.tgz?dl=1 | tar --transform 's/^dbt2-0.37.50.3/dbt2/' -xvz
+RUN svn checkout --non-interactive --trust-server-cert https://svn.code.sf.net/p/gvirtualxray/code/trunk gvirtualxray-trunk
+#RUN wget -qO- https://www.dropbox.com/s/scrr0xp3kebrbad/gvxrsource.tgz?dl=1 | tar --transform 's/^dbt2-0.37.50.3/dbt2/' -xvz
 RUN mkdir GVXRbuild
 RUN mkdir GVXR
 WORKDIR ${HOME}/GVXRbuild
@@ -32,18 +33,9 @@ RUN make
 WORKDIR ${HOME}
 RUN echo "addpath('${HOME}/GVXR')" > ${HOME}/.octaverc
 RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/python3/* ${HOME}/GVXR/
-# RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/ruby/* ${HOME}/GVXR/
 RUN cp -R ${HOME}/GVXRbuild/tools_bin/Wrappers/octave/* ${HOME}/GVXR/
 RUN rm -rf GVXRbuild gvirtualxray-trunk
 
-# RUN set -e
-# RUN echo "Starting X virtual framebuffer (Xvfb) in background..."
-# RUN export DISPLAY=:99.0
-# ENV DISPLAY :99.0
-# RUN Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-# RUN sleep 3
-# RUN exec "$@"
-ENV DISPLAY=":99"
 
 USER ${USER}
 
